@@ -1,6 +1,6 @@
 # Ignore generated UFO folders.
 *.ufo/
 
-# Ignore python runtime
+# Ignore python runtime.
 __pycache__
 *.pyc

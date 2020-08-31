@@ -33,7 +33,7 @@ __Dependencies:__
 
 - When using Glyphs, please make sure you have the [GSPen.py][] and [objectsGS.py][] modules installed.
 
-- When running the script from the command line, the [FontParts][] Python module must be installed (run `pip install -r requirements.txt`)
+- When running the script from the command line, the [FontParts][] Python module must be installed (run `pip install -r requirements.txt`).
 
 
 ## What does this script not do?
