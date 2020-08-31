@@ -1,0 +1,2 @@
+# Requirements for running from the command line.
+fontParts

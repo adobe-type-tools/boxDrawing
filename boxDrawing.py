@@ -50,6 +50,7 @@ IN_RF = False
 IN_FL = False
 IN_GLYPHS = False
 IN_SHELL = False
+FOR_FONTFORGE = False
 
 if not any((IN_RF, IN_FL, IN_GLYPHS)):
     try:
@@ -75,8 +76,14 @@ if not any((IN_RF, IN_FL, IN_GLYPHS)):
 if not any((IN_RF, IN_FL, IN_GLYPHS)):
     IN_SHELL = True
     import os
+    import sys
     import time
     from fontParts.fontshell import RFont
+
+    # Parse command line args.
+    for arg in sys.argv:
+        if arg.lstrip("-").lower() == "fontforge":
+            FOR_FONTFORGE = True
 
 
 if IN_GLYPHS:
@@ -872,12 +879,17 @@ if f is not None:
     # Keeping track of the glyph order
 
     for name, uni in sorted(recipes, key=lambda x: int(x[1], 16)):
+        # Set name of outputted glif.
+        glifname = name
+        if FOR_FONTFORGE:
+            glifname = "uni%s" % uni
+
         # sorting the dictionary by the Unicode value of the glyph.
         generatedGlyphs.append(name)
         commands = recipes[name, uni]
         print(name)
 
-        g = f.newGlyph(name, clear=True)
+        g = f.newGlyph(glifname, clear=True)
         g.width = WIDTH
         boxPen = g.getPen()
         for command in commands:
